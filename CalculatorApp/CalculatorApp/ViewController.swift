@@ -64,7 +64,7 @@ class ViewController: UIViewController {
                             green: 58/255,
                             blue: 58/255,
                             alpha: 1.0
-                                                                                           )
+                        )
                     )
                 }
             )
@@ -138,15 +138,46 @@ class ViewController: UIViewController {
             label.text = String(label.text!.split(separator: "").dropLast().joined()) // 라벨에 있는 문자열에서 맨 마지막 글자 하나를 지움.
         }
         
-
+        
         // Level 7. 초기화 버튼 (AC)을 구현합니다.
         if value == "AC" {
             label.text = "0" // AC 버튼을 클릭하면 모든 값을 지우고 "0"으로 초기화.
             return // return은 함수를 즉시 종료.
         }
         
+        
+        // Level 8. 등호(=)버튼을 클릭하면 연산이 수행하도록 구현.
+        if value == "=" { // = 버튼을 누를 때, 수식에서 = 제거하고 계산.
+            if let text = label.text { // 라벨에 표시된 수식이 존재할 때만 다음 코드를 실행.
+                let expression = text.replacingOccurrences(of: "=", with: "") // 수식 문자열에서 = 문자를 제거해서 계산 가능한 형태로 만듬.
+                
+                if let result = calculate(expression: expression) { // 정리된 수식을 calculate 메서드에 전달해 계산 결과를 얻음.
+                    label.text = String(result) // 계산된 결과를 문자열로 변환해서 라벨에 표시.
+                }
+            }
+            return
+        }
+        
+        
     }
-
+    
+    
+    
+    // Level 8. 수식 문자열을 넣으면 계산해주는 calculate 메서드.
+    private func calculate(expression: String) -> Int? { // 문자열로 된 수식을 받아서 계산 결과를 Int로 반환하는 함수이고, 실패하면 nil을 반환.
+        
+        let expression = NSExpression(format: expression) // 전달받은 수식 문자열을 NSExpression 객체로 변환해서 계산 가능한 형태로 만듬.
+        
+        if let result = expression.expressionValue(with: nil, context: nil) as? Double { // 수식을 실제로 계산하고, 결과를 Double 타입으로 받을 수 있는지 확인.
+            
+            return Int(result) // 계산 결과(Double)를 Int로 변환해서 반환.
+        } else {
+            
+            return nil
+        }
+        
+    }
+    
 }
 
 
