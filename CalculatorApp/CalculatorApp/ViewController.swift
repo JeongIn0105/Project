@@ -138,8 +138,16 @@ class ViewController: UIViewController {
             label.text = String(label.text!.split(separator: "").dropLast().joined()) // 라벨에 있는 문자열에서 맨 마지막 글자 하나를 지움.
         }
         
+
+        // Level 7. 초기화 버튼 (AC)을 구현합니다.
+        if value == "AC" {
+            label.text = "0" // AC 버튼을 클릭하면 모든 값을 지우고 "0"으로 초기화.
+            return // return은 함수를 즉시 종료.
+        }
+        
     }
 
 }
+
 
 
