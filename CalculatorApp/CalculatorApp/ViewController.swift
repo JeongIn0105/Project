@@ -26,18 +26,18 @@ class ViewController: UIViewController {
         view.backgroundColor = .black // 뷰의 배경화면 색은 검은색.
         
         // Label의 속성
-        label.text = "12345" // 우선, 텍스트는 12345로 고정.
+        label.text = "0" // Level 6. 이제 기본 텍스트는 "12345"가 아닌 "0"이 되도록 합니다.
         label.textColor = .white // 텍스트의 색상은 하얀색.
         label.textAlignment = .right // 텍스트의 정렬은 오른쪽 정렬.
-        label.font = UIFont.boldSystemFont(ofSize: 60) // 폰트는 bold체, 사이즈는 60
+        label.font = UIFont.boldSystemFont(ofSize: 60) // 폰트는 bold체, 사이즈는 60.
         
         view.addSubview(label)
         
-        // Label의 제약 조건
+        // Label의 제약 조건.
         label.snp.makeConstraints {
-            $0.height.equalTo(100) // height는 100으로 설정
-            $0.leading.trailing.equalToSuperview().offset(-30) // leading, trailing는 뷰로 부터 30 떨어지도록 설정
-            $0.top.equalToSuperview().offset(200) // top은 뷰로 부터 200 떨어지도록 설정
+            $0.height.equalTo(100) // height는 100으로 설정.
+            $0.leading.trailing.equalToSuperview().inset(30) // leading, trailing는 뷰로 부터 30 떨어지도록 설정.
+            $0.top.equalToSuperview().offset(200) // top은 뷰로 부터 200 떨어지도록 설정.
         }
         
         
@@ -58,18 +58,18 @@ class ViewController: UIViewController {
                 operators.map {title in // 연산자 문자열 하나씩 꺼내서 UIButton으로 생성.
                     makeButton(
                         titleValue: title,
-                        action: #selector(buttonTapped(_:)), // 버튼 눌렀을 때 실행될 메서드 연결
+                        action: #selector(buttonTapped(_:)), // 버튼 눌렀을 때 실행될 메서드 연결.
                         backgroundColor: orangeOperator.contains(title) ? .orange : UIColor( // 연산자면 오렌지색, 아니면 회색.
                             red: 58/255,
                             green: 58/255,
                             blue: 58/255,
                             alpha: 1.0
-                        )
+                                                                                           )
                     )
                 }
             )
         }
-           
+        
         
         // verticalStackView의 속성.
         let verticalStackView = UIStackView(arrangedSubviews: horizontalStackView) // 가로 스택 뷰들을 세로로 정렬하기 위해, horizontalStackView를 내부 요소로 갖는 세로 UIStackView를 생성.
@@ -122,9 +122,24 @@ class ViewController: UIViewController {
     // Button의 Action 생성.
     @objc
     private func buttonTapped(_ sender: UIButton) {
-        print(sender.currentTitle ?? "")
+        
+        // Level 6. 버튼을 클릭하면 라벨에 표시되도록 합니다.
+        guard let value = sender.currentTitle else { return } // guard문은 조건이 false일 때 코드를 더이상 실행시키지 않고 코드블록을 빠져나가는 조건문. -> 만약 currentTitle이 없다면 return, 있다면 value 상수에 담아서 코드를 계속 실행.
+        
+        // 기본으로 라벨에 노출되어있던 텍스트 오른쪽에 버튼을 클릭하면 그 버튼의 값이 추가되도록 합니다.
+        if label.text == "0" { // 맨 처음 기본값이 0.
+            label.text = value
+        } else {
+            label.text? += value // 선택적 타입 'String?'의 값은 'String' 타입의 값으로 언래핑되어야 합니다.
+        }
+        
+        // 하지만 012 라는 값은 이상합니다. 맨 앞자리가 0 인 숫자라면, 0을 지우고 표현하도록 합니다.
+        if label.text?.first == "0" {
+            label.text = String(label.text!.split(separator: "").dropLast().joined()) // 라벨에 있는 문자열에서 맨 마지막 글자 하나를 지움.
+        }
+        
     }
-    
+
 }
 
 
