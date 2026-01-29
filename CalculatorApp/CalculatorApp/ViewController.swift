@@ -11,9 +11,9 @@ import SnapKit
 
 class ViewController: UIViewController {
     
-    // Level 1. UILabel 사용.
+    // Level 1. UILabel 사용
     let label = UILabel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -29,15 +29,15 @@ class ViewController: UIViewController {
         label.text = "12345" // 우선, 텍스트는 12345로 고정.
         label.textColor = .white // 텍스트의 색상은 하얀색.
         label.textAlignment = .right // 텍스트의 정렬은 오른쪽 정렬.
-        label.font = UIFont.boldSystemFont(ofSize: 60) // 폰트는 bold체, 사이즈는 60.
+        label.font = UIFont.boldSystemFont(ofSize: 60) // 폰트는 bold체, 사이즈는 60
         
         view.addSubview(label)
         
-        // Label의 제약 조건.
+        // Label의 제약 조건
         label.snp.makeConstraints {
-            $0.height.equalTo(100) // Label의 높이는 100으로 설정.
-            $0.leading.trailing.equalToSuperview().offset(-30) // leading, trailing는 뷰로 부터 30 떨어지도록 설정.
-            $0.top.equalToSuperview().offset(200) // top은 뷰로 부터 200 떨어지도록 설정.
+            $0.height.equalTo(100) // height는 100으로 설정
+            $0.leading.trailing.equalToSuperview().offset(-30) // leading, trailing는 뷰로 부터 30 떨어지도록 설정
+            $0.top.equalToSuperview().offset(200) // top은 뷰로 부터 200 떨어지도록 설정
         }
         
         
@@ -49,44 +49,61 @@ class ViewController: UIViewController {
             ["AC", "0", "=", "/"]
         ]
         
-        // horziontalStackView 배열.
-        let horziontalStackView = buttonTitles.map { titles in // 고차함수 중에 map을 사용하여 배열의 각 요소를 변환하여 새로운 배열을 생성.
-            
-            makeHorizontalStackView(titles.map { makeButton(title: $0) })
-        }
+        // Level 4. 연산 버튼(+, -, *, /, AC, =)들은 색상을 orange로 설정.
+        let orangeOperator: Set<String> = ["+", "-", "*", "/", "AC", "="] // 순서가 없고 중복을 허용하지 않기 떄문에 Set을 사용.
         
+        let horizontalStackView = buttonTitles.map { operators in // 고차함수 중에 map을 사용하여 배열의 각 요소를 변환하여 새로운 배열을 생성.
+            
+            makeHorizontalStackView( // 만들어진 버튼 배열들을 가로 스택 뷰로 정렬.
+                operators.map {title in // 연산자 문자열 하나씩 꺼내서 UIButton으로 생성.
+                    makeButton(
+                        titleValue: title,
+                        action: #selector(buttonTapped(_:)), // 버튼 눌렀을 때 실행될 메서드 연결
+                        backgroundColor: orangeOperator.contains(title) ? .orange : UIColor( // 연산자면 오렌지색, 아니면 회색.
+                            red: 58/255,
+                            green: 58/255,
+                            blue: 58/255,
+                            alpha: 1.0
+                        )
+                    )
+                }
+            )
+        }
+           
         
         // verticalStackView의 속성.
-        let verticalStackView = UIStackView(arrangedSubviews: horziontalStackView)
+        let verticalStackView = UIStackView(arrangedSubviews: horizontalStackView) // 가로 스택 뷰들을 세로로 정렬하기 위해, horizontalStackView를 내부 요소로 갖는 세로 UIStackView를 생성.
+        
         verticalStackView.axis = .vertical // 수직(세로) 축.
         verticalStackView.backgroundColor = .black // verticalStackViewd의 배경색은 검은색.
         verticalStackView.spacing = 10 // 스택 뷰 안에 들어있는 뷰들의 거리 10 설정.
         verticalStackView.distribution = .fillEqually // 분배, 스택 뷰 내부의 사이즈 분배에 관한 설정. fillEqually를 선택하면 뷰들의 사이즈가 동일하게 맞춰진다.
         
-        view.addSubview(verticalStackView)
+        view.addSubview(verticalStackView) // 생성한 스택뷰를 화면에 보이도록 뷰 계층에 추가.
         
-        // verticalStackView의 제약 조건
+        // verticalStackView의 제약 조건.
         verticalStackView.snp.makeConstraints {
-            $0.width.height.equalTo(350) // 가로와 세로의 길이를 350으로 설정.
+            $0.width.height.equalTo(350) // StackView의 높이를 350만큼 설정.
+            $0.centerX.equalToSuperview() // centerX = superView 와 같도록.
             $0.top.equalTo(label.snp.bottom).offset(60) // top = label 의 bottom 으로 부터 60 떨어지도록.
-            $0.centerX.equalToSuperview() //
         }
- 
     }
     
     
-    // makeButton 메서드를 생성하여 button의 속성.
-    private func makeButton(title: String) -> UIButton {
+    // Level 4. makeButton 메서드를 생성하여 button의 속성.
+    private func makeButton(titleValue: String, action: Selector, backgroundColor: UIColor) -> UIButton {
         
         let button = UIButton() // button 상수 생성.
         
-        button.setTitle(title, for: .normal) // 버튼의 제목, title.
+        button.setTitle(titleValue, for: .normal) // 버튼의 제목, title.
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30) // 버튼의 폰트는 bold체, 사이즈는 30.
-        button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0) // 버튼의 배경색은 회색.
-        button.layer.cornerRadius = 40 // 버튼의 테두리는 40만큼 깎임.
+        button.backgroundColor = backgroundColor // 버튼의 배경색은.
+        button.layer.cornerRadius = 40 // 버튼의 테두리는 40만큼 깎임. -> Level 5. 모든 버튼들을 원형으로 만들기.
+        button.addTarget(self, action: action, for: .touchUpInside) // 버튼을 눌렀을 때(.touchUpInside) 지정한 메서드(action)가 실행되도록 이벤트를 연결.
         
         return button // button 리턴 값.
     }
+    
     
     // 똑같은 스택 뷰가 4줄이 필요하기 떄문에 horizontalStackView를 생성하는 메서드를 정의.
     private func makeHorizontalStackView(_ views: [UIView]) -> UIStackView {
@@ -100,6 +117,12 @@ class ViewController: UIViewController {
         
         return stackView // stackView 리턴 값.
         
+    }
+    
+    // Button의 Action 생성.
+    @objc
+    private func buttonTapped(_ sender: UIButton) {
+        print(sender.currentTitle ?? "")
     }
     
 }
