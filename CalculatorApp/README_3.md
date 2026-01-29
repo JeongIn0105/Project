@@ -21,7 +21,7 @@ Swift 기본 개인 과제 제출_이정인
 ## LV 1
 ### 1. UILabel 을 사용해서 수식을 표시할 수 있는 라벨을 띄웁니다.
 ### 2. 전체 코드
-***
+```swift
 // 계산기 앱 만들기
 import UIKit
 import SnapKit
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
     }
     
 }
-***
+```
 
 
 ### LV 1 알고리즘
@@ -79,7 +79,7 @@ class ViewController: UIViewController {
 ## LV 2
 ### 1. UIStackView 을 사용해서 4개의 버튼을 모아 가로 스택뷰 생성. 왼쪽과 같이 구성해보세요.
 ### 2. 전체 코드 
-***
+```swift
 // 계산기 앱 만들기
 import UIKit
 import SnapKit
@@ -166,7 +166,7 @@ class ViewController: UIViewController {
     }
     
 }
-***
+```
 
 
 ### LV 2 알고리즘 
@@ -193,7 +193,7 @@ class ViewController: UIViewController {
 ## LV 3
 ### 1. UIStackView 을 사용해서 세로 스택 뷰 생성. 왼쪽과 같이 구성해보세요.
 ### 2. 전체 코드
-***
+```swift
 // 계산기 앱 만들기
 import UIKit
 import SnapKit
@@ -292,7 +292,7 @@ class ViewController: UIViewController {
     }
     
 }
-***
+```
 
 
 ### LV 3. 알고리즘
@@ -311,7 +311,7 @@ class ViewController: UIViewController {
 ## LV 4
 ### 1. 연산 버튼 (+, -, *, /, AC, =) 들은 색상을 orange 로 설정.
 ### 2. 전체 코드
-***
+```swift
 // 계산기 앱 만들기
 import UIKit
 import SnapKit
@@ -433,7 +433,7 @@ class ViewController: UIViewController {
     }
     
 }
-***
+```
 
 
 ### LV 4 알고리즘
@@ -445,7 +445,7 @@ class ViewController: UIViewController {
 ## LV 5
 ### 1. 모든 버튼들을 원형으로 만들기.
 ### 2. 전체 코드
-***
+```swift
 // 계산기 앱 만들기
 import UIKit
 import SnapKit
@@ -567,7 +567,7 @@ class ViewController: UIViewController {
     }
     
 }
-***
+```
 
 
 ### LV 5. 알고리즘
@@ -588,7 +588,7 @@ class ViewController: UIViewController {
 ### 4. 하지만 012 라는 값은 이상합니다. 맨 앞자리가 0 인 숫자라면, 0을 지우고 표현하도록 합니다.
 #### - 예를 들면, 012 → 12 가 되어야 합니다.
 ### 5. 전체 코드
-***
+```swift
 // 계산기 앱 만들기.
 import UIKit
 import SnapKit
@@ -725,7 +725,7 @@ class ViewController: UIViewController {
     }
 
 }
-***
+```
 
 
 ### LV 6. 알고리즘
@@ -739,7 +739,7 @@ class ViewController: UIViewController {
 ## LV 7. 
 ### 1. 초기화 버튼 (AC) 을 구현합니다.
 ### 2. 전체 코드
-***
+```swift
 // 계산기 앱 만들기.
 import UIKit
 import SnapKit
@@ -883,7 +883,7 @@ class ViewController: UIViewController {
     }
 
 }
-***
+```
 
 
 ### LV 7. 알고리즘
@@ -897,7 +897,7 @@ class ViewController: UIViewController {
 #### - 123*456 을 입력 후, = 을 클릭하면 결과값인 56088 이 출력되도록 해주세요.
 #### - 연산에 필요한 메서드를 제공해드리겠습니다. 이 메서드를 활용해주세요.
 ### 2. 전체 코드
-***
+```swift
 // 계산기 앱 만들기.
 import UIKit
 import SnapKit
@@ -1072,7 +1072,7 @@ class ViewController: UIViewController {
     }
     
 }
-***
+```
 
 
 ### LV 8. 알고리즘
