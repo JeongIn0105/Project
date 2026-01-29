@@ -5,13 +5,13 @@
 //  Created by 이정인 on 1/23/26.
 //
 
-// 계산기 앱 만들기
+// 계산기 앱 만들기.
 import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
     
-    // Level 1. UILabel 사용
+    // Level 1. UILabel 사용.
     let label = UILabel()
     
     override func viewDidLoad() {
