@@ -9,7 +9,7 @@
 
 ## ▶️ 실행 화면
 <p align="center">
-<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/b2fd69aa-6fef-48fe-93f5-55248333c98d"/>
+<img width="600" height="900" alt="image" src="https://github.com/user-attachments/assets/b2fd69aa-6fef-48fe-93f5-55248333c98d"/>
 </p>
 
 ---
