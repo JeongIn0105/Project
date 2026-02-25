@@ -36,7 +36,7 @@ class PhoneBookViewController: UIViewController {
         button.setTitle("랜덤 이미지 생성", for: .normal)
         button.setTitleColor(.gray, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 15)
-        button.addTarget(self, action: #selector(randomImageButtonTapped), for: .touchDown)
+        button.addTarget(self, action: #selector(randomImageButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -68,6 +68,7 @@ class PhoneBookViewController: UIViewController {
         
         setNavigationController()
     }
+    
     
     // MARK: UI를 view에 반영해주는 메서드.
     private func configureUI() {

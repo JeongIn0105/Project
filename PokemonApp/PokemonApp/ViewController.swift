@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         button.backgroundColor = .white
         
         // MARK: Level 2 - push로 연락처 추가 화면 이동.
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchDown)
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
         return button
         

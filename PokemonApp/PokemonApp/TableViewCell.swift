@@ -56,6 +56,15 @@ final class TableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Challenge - 2. prepareForReuse 개념 사용.
+    override func prepareForReuse() {
+            super.prepareForReuse()
+
+            nameLabel.text = nil
+            phoneNumberLabel.text = nil
+            pokemonImageView.image = nil
+        }
+    
     private func configureUI() {
         
         contentView.backgroundColor = .white
