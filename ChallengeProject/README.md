@@ -14,7 +14,7 @@
 
 ## ▶️ 실행 화면
 <p align="center">
-<img width="500" height="900" alt="Pokemon" src="https://github.com/user-attachments/assets/1382a112-045b-414a-801b-dbb2b66adb49" />
+<img width="500" height="900" alt="Pokemon" src="https://raw.githubusercontent.com/JeongIn0105/Project/main/ChallengeProject/Pokemon.png" />
 </p>
 
 ---
@@ -40,6 +40,7 @@
 
 ## 📂 프로젝트 구조(MVVM)
 
+```plaintext
 📁 Common
  ┣ NetworkManager.swift
 
@@ -58,6 +59,7 @@
 📁 Utils
  ┣ PokemonTranslator.swift
  ┣ PokemonTypeName.swift
+```
 
 ---
 
@@ -70,14 +72,14 @@
     
 2. **`Step 2` MVVM - Model 구현**
     
-    - MVVM 중에서 Model 을 구현합니다.
-    - 이 앱에서는 아래 2가지 API 를 사용하게 됩니다.
-    1. **`limit` 개씩 `offset` 부터 포켓몬 정보 로드**
-      - `https://pokeapi.co/api/v2/pokemon?limit=\(limit)&offset=\(offset)`
-      - 예를들어, limit = 20, offset = 0 이라면 처음부터 20개의 포켓몬 정보를 업로드.
-    2. **포켓몬 번호로부터 포켓몬 디테일 정보 로드**
-      - `https://pokeapi.co/api/v2/pokemon/\(pokemon_id)/`
-      - 위 API 결과들을 담을 수 있는 구조체들을 선언합니다.
+   - MVVM 중에서 Model 을 구현합니다.
+   - 이 앱에서는 아래 2가지 API 를 사용하게 됩니다.
+   01. **`limit` 개씩 `offset` 부터 포켓몬 정보 로드**
+       - `https://pokeapi.co/api/v2/pokemon?limit=\(limit)&offset=\(offset)`
+       - 예를들어, limit = 20, offset = 0 이라면 처음부터 20개의 포켓몬 정보를 업로드.
+   02. **포켓몬 번호로부터 포켓몬 디테일 정보 로드**
+       - `https://pokeapi.co/api/v2/pokemon/\(pokemon_id)/`
+       - 위 API 결과들을 담을 수 있는 구조체들을 선언합니다.
 
 3. **`Step 3` MVVM -  MainViewModel 구현**
     
