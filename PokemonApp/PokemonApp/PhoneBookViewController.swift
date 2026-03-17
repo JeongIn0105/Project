@@ -117,7 +117,7 @@ class PhoneBookViewController: UIViewController {
         
         guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/\(randomNumber)") else { return }
         
-        // fetchData()
+        // fetchData().
         fetchDataByAlamofire(url: url) { [weak self] (result: Result<PokemonData, AFError>) in
             
             guard let self else { return }
@@ -130,7 +130,7 @@ class PhoneBookViewController: UIViewController {
                     return
                 }
                 
-                // Alamofire 를 사용하면 이미지 로드
+                // Alamofire 를 사용하면 이미지 로드.
                 AF.request(imageUrl).responseData { [weak self] response in
                     
                     guard let self else { return }

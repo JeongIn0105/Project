@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         
         
         // MARK: Level 5 - CoreData container 연결.
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate // as!은 서브클래스로 변환하는 타입캐스팅 방법이고 실패하면 앱이 크래시가 발생합니다.
         PhoneBookViewController.container = appDelegate.persistentContainer
         
         configureUI()
@@ -132,7 +132,7 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // MARK: Level 1 - 셀에 이름 / 전화번호 / 이미지 표시.
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.id) as? TableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.id) as? TableViewCell else { // as?은 서브클래스로 변환하는 타입캐스팅 방법이고 Optional 값으로 다운캐스팅 됩니다.
             return UITableViewCell()
         }
         cell.configureCell(phoneBookData: phoneBookData[indexPath.row])

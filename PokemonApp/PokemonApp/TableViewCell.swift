@@ -58,12 +58,12 @@ final class TableViewCell: UITableViewCell {
     
     // MARK: Challenge - 2. prepareForReuse 개념 사용.
     override func prepareForReuse() {
-            super.prepareForReuse()
-
-            nameLabel.text = nil
-            phoneNumberLabel.text = nil
-            pokemonImageView.image = nil
-        }
+        super.prepareForReuse()
+        
+        nameLabel.text = nil
+        phoneNumberLabel.text = nil
+        pokemonImageView.image = nil
+    }
     
     private func configureUI() {
         
